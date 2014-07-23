@@ -1,0 +1,119 @@
+
+
+		
+		String dayOfWeek = today.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.US);
+		
+		
+
+		 One of the major differences between HashMap and Hashtable is that HashMap is non 
+		 synchronized whereas Hashtable is synchronized, which means Hashtable is thread-safe and 
+		 can be shared between multiple threads but HashMap can not be shared between multiple threads 
+		 without proper synchronization. Java 5 introduces ConcurrentHashMap which is an alternative of 
+		 Hashtable and provides better scalability than Hashtable in Java.
+
+Read more: http://javarevisited.blogspot.com/2010/10/difference-between-hashmap-and.html#ixzz36nWPDMp9
+		
+    HashMap does not guarantee that the order of the map will remain constant over time.
+		
+    Hashtable is synchronized, whereas HashMap is not. This makes HashMap better for non-threaded applications, as unsynchronized Objects typically perform better than synchronized ones.
+    Hashtable does not allow null keys or values. HashMap allows one null key and any number of null values.
+    
+    One of HashMap's subclasses is LinkedHashMap, so in the event that you'd want predictable iteration order 
+    (which is insertion order by default), you could easily swap out the HashMap for a LinkedHashMap. 
+    This wouldn't be as easy if you were using Hashtable.
+	
+	No one's mentioned the fact that Hashtable is not part of the Java Collections Framework - it just provides a similar API. 
+	Also, Hashtable is considered legacy code. There's nothing about Hashtable that can't be done using HashMap or 
+	derivations of HashMap, so for new code, I don't see any justification for going back to Hashtable.
+	
+	
+    The HashMap class is roughly equivalent to Hashtable, except that it is non synchronized and permits nulls. (HashMap allows null values as key and value whereas Hashtable doesn't allow nulls).
+    HashMap does not guarantee that the order of the map will remain constant over time.
+    HashMap is non synchronized whereas Hashtable is synchronized.
+    Iterator in the HashMap is fail-safe while the enumerator for the Hashtable is not and throw ConcurrentModificationException 
+    if any other Thread modifies the map structurally by adding or removing any element except Iterator's own remove() method. 
+    But this is not a guaranteed behavior and will be done by JVM on best effort.
+
+Note on Some Important Terms
+
+    Synchronized means only one thread can modify a hash table at one point of time. Basically, it means that any thread before performing 
+    an update on a hashtable will have to acquire a lock on the object while others will wait for lock to be released.
+    Fail-safe is relevant from the context of iterators. If an iterator has been created on a collection object and some other thread 
+    tries to modify the collection object "structurally", a concurrent modification exception will be thrown. 
+    It is possible for other threads though to invoke "set" method since it doesn't modify the collection "structurally". 
+    However, if prior to calling "set", the collection has been modified structurally, "IllegalArgumentException" will be thrown.
+    Structurally modification means deleting or inserting element which could effectively change the structure of map.
+
+	HashMap can be synchronized by Map m = Collections.synchronizeMap(hashMap);
+
+	Map provides Collection views instead of direct support for iteration via Enumeration objects. 
+	Collection views greatly enhance the expressiveness of the interface, as discussed later in this section. 
+
+	Map allows you to iterate over keys, values, or key-value pairs; Hashtable does not provide the third option. 
+	Map provides a safe way to remove entries in the midst of iteration; Hashtable did not. 
+	Finally, Map fixes a minor deficiency in the Hashtable interface. 
+	Hashtable has a method called contains, which returns true if the Hashtable contains a given value. 
+	Given its name, you'd expect this method to return true if the Hashtable contained a given key, 
+	because the key is the primary access mechanism for a Hashtable. 
+	The Map interface eliminates this source of confusion by renaming the method containsValue. 
+	Also, this improves the interface's consistency — containsValue parallels containsKey.
+	
+	http://blog.manishchhabra.com/2012/08/the-5-main-differences-betwen-hashmap-and-hashtable/
+	http://stackoverflow.com/questions/40471/differences-between-hashmap-and-hashtable
+		
+		
+		
+		
+//		SortedMap<Long, Integer> mostWatchedSeries = new TreeMap<Long, Integer>();
+//		Long[] bucketList = new Long[howMany];
+//
+//		
+//		Collection<Integer> c = countsPerSeries.values();
+//		Iterator<Integer> i = c.iterator();
+//		
+		/*
+		static <K,V extends Comparable<? super V>>
+		SortedSet<Map.Entry<K,V>> entriesSortedByValues(Map<K,V> map) {
+		    SortedSet<Map.Entry<K,V>> sortedEntries = new TreeSet<Map.Entry<K,V>>(
+		        new Comparator<Map.Entry<K,V>>() {
+		            @Override public int compare(Map.Entry<K,V> e1, Map.Entry<K,V> e2) {
+		                return e1.getValue().compareTo(e2.getValue());
+		            }
+		        }
+		    );
+		    sortedEntries.addAll(map.entrySet());
+		    return sortedEntries;
+		}
+
+		Now you can do the following:
+
+		    Map<String,Integer> map = new TreeMap<String,Integer>();
+		    map.put("A", 3);
+		    map.put("B", 2);
+		    map.put("C", 1);   
+	*/
+		
+//		for (int i = 0; i < howMany; i++) {
+//			mostWatchedSeries[i] = 
+//		}
+		
+//		if (!mostWatchedSeries.isEmpty()) {
+//							
+//			for (int i=0; i<=howMany; i++) {
+//				Entry<Long,Integer> maxEntry = null;
+//				Long maxSeries = null;						
+//				
+//				for(Entry<Long,Integer> entry : mostWatchedSeries.entrySet()) {
+//				    if (maxEntry == null || entry.getValue() > maxEntry.getValue()) {
+//				        maxEntry = entry;
+//				        maxSeries = entry.getKey();
+//				    }
+//				}
+//			bucketList[i] = maxSeries;
+//			mostWatchedSeries.remove(mostWatchedSeries.get(maxEntry));
+//			}
+//
+//		}
+//		
+//		return bucketList;
+	
